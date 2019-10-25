@@ -4,3 +4,10 @@ Make sure that `gem install mysql2 -v '0.5.2' --source 'https://rubygems.org/'` 
 
 ##### Solution 
 from [stackoverflow answer](https://stackoverflow.com/a/45474878/5863487 "https://stackoverflow.com/a/45474878/5863487") install `sudo apt-get install libmysqlclient-dev`
+
+
+Open rails console `rails c` and close it `exit`
+`Application.count()`
+
+`app1 = Application.create(name: "First app");`
+

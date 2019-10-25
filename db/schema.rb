@@ -14,10 +14,11 @@ ActiveRecord::Schema.define(version: 2019_10_25_092416) do
 
   create_table "applications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
-    t.string "token"
+    t.string "token", null: false
     t.decimal "chats_count", precision: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_applications_on_token", unique: true
   end
 
   create_table "chats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
