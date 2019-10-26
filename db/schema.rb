@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_25_151202) do
+ActiveRecord::Schema.define(version: 2019_10_26_035056) do
 
   create_table "applications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_10_25_151202) do
     t.decimal "messages_count", precision: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "application_id"
+    t.bigint "application_id"
     t.index ["application_id"], name: "index_chats_on_application_id"
   end
 
@@ -34,8 +34,10 @@ ActiveRecord::Schema.define(version: 2019_10_25_151202) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "chat_id"
+    t.bigint "chat_id"
     t.index ["chat_id"], name: "index_messages_on_chat_id"
   end
 
+  add_foreign_key "chats", "applications"
+  add_foreign_key "messages", "chats"
 end

@@ -35,6 +35,8 @@ class ApplicationsController < ApplicationController
 
   # DELETE /applications/1
   def destroy
+    # @chats = @application.chats
+    # @chats.destroy
     @application.destroy
   end
 
