@@ -2,11 +2,19 @@ class ChatsController < ApplicationController
   before_action :set_chat, only: [:show, :update, :destroy]
 
   # GET /chats
-  def index
-    @chats = Chat.all
-
-    render json: @chats
-  end
+#   def index
+#     @chats = Chat.all
+#
+#     render json: @chats
+#   end  
+   def index
+     if params[:application_id]
+         @chats = Application.find(params[:application_id]).chats
+     else
+         @chats = Chat.all
+     end
+     render json: @chats
+   end
 
   # GET /chats/1
   def show
@@ -15,8 +23,12 @@ class ChatsController < ApplicationController
 
   # POST /chats
   def create
+    # puts request.body.read
+    # @application = Application.find(request.body.read.application_id)
+    # puts @application
+    # @chat = @application.chats.build(params[:name])
+    puts chat_params
     @chat = Chat.new(chat_params)
-
     if @chat.save
       render json: @chat, status: :created, location: @chat
     else
@@ -46,6 +58,6 @@ class ChatsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def chat_params
-      params.require(:chat).permit(:name, :messages_count)
+      params.require(:chat).permit(:name, :application_id)
     end
 end
