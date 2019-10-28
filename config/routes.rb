@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-  resources :messages
+  resources :messages do
+    collection do
+      get 'search'
+    end
+  end
+    # get 'message/search', to: 'messages#search'
   resources :chats do
     resources :messages
+    # get 'search', to: 'messages#search'
   end  
   resources :applications do 
     resources :chats

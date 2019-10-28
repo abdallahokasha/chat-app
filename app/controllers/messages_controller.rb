@@ -40,6 +40,12 @@ class MessagesController < ApplicationController
       render json: @message.errors, status: :unprocessable_entity
     end
   end
+  
+  def search
+    puts params[:description]
+    @messages = params[:description].nil? ? [] : Message.search([params[:description], params[:chat_id]])
+    render json: @messages
+  end
 
   # DELETE /messages/1
   def destroy
