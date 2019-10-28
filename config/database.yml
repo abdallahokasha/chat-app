@@ -8,7 +8,7 @@ default: &default
   adapter: mysql2
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
-  host: db
+  host: localhost # to be db in case of docker-compose
   username: root
   password: 123456
   pool: 5  
@@ -16,7 +16,7 @@ default: &default
 development:
   <<: *default
   database: db_chatapp_dev
-  host: db
+  host: localhost # to be db in case of docker-compose
   encoding: utf8   
   username: root  
   password: 123456   
