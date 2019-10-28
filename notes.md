@@ -12,8 +12,12 @@ from [stackoverflow answer](https://stackoverflow.com/a/45474878/5863487 "https:
 
 Open rails console `rails c` and close it `exit`
 
-##### CRUD
+##### [CRUD](https://guides.rubyonrails.org/active_record_basics.html#crud-reading-and-writing-data "https://guides.rubyonrails.org/active_record_basics.html#crud-reading-and-writing-data")
+
 `Application.count()`
 
 `app1 = Application.create(name: "First app");`
 
+#### [docker-compose](https://docs.docker.com/compose/rails/ "https://docs.docker.com/compose/rails/")
+Rebuild the application
+If you make changes to the Gemfile or the Compose file to try out some different configurations, you need to rebuild. Some changes require only `docker-compose up --build`, but a full rebuild requires a re-run of `docker-compose run web bundle `install to sync changes in the Gemfile.lock to the host, followed by `docker-compose up --build`.
