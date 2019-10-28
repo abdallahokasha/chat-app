@@ -22,6 +22,7 @@ chats_list = [
   [ "chat-3 on app-2", 2 ],
   [ "chat-4 on app-3", 3 ]
 ]
+# token is only mandatory for create chat api
 
 chats_list.each do |name, application_id|
   Chat.create( name: name, application_id: application_id)
