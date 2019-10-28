@@ -28,12 +28,20 @@ class ChatsController < ApplicationController
     # puts @application
     # @chat = @application.chats.build(params[:name])
     puts chat_params
-    @chat = Chat.new(chat_params)
-    if @chat.save
-      render json: @chat, status: :created, location: @chat
-    else
-      render json: @chat.errors, status: :unprocessable_entity
-    end
+    if chat_params[:application_id].nil? or chat_params[:application_token].nil?
+      render json: {error: "Missing application_id or application_token"}, status: :internal_server_error
+    else 
+      if Application.find(chat_params[:application_id]).token == chat_params[:application_token]
+        @chat = Chat.new(name: chat_params[:name], application_id: chat_params[:application_id])
+        if @chat.save
+          render json: @chat, status: :created, location: @chat
+        else
+          render json: @chat.errors, status: :unprocessable_entity
+        end
+      else 
+        render json: {error: "Sorry, provided application token is not correct."}, status: :unprocessable_entity
+      end  
+    end  
   end
 
   # PATCH/PUT /chats/1
@@ -58,6 +66,6 @@ class ChatsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def chat_params
-      params.require(:chat).permit(:name, :application_id)
+      params.require(:chat).permit(:name, :application_id, :application_token)
     end
 end
