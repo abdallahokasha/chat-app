@@ -8,10 +8,15 @@ default: &default
   adapter: mysql2
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
+  host: db
+  username: root
+  password: 123456
+  pool: 5  
 
 development:
   <<: *default
   database: db_chatapp_dev
+  host: db
   encoding: utf8   
   username: root  
   password: 123456   
