@@ -21,3 +21,18 @@ Open rails console `rails c` and close it `exit`
 #### [docker-compose](https://docs.docker.com/compose/rails/ "https://docs.docker.com/compose/rails/")
 Rebuild the application
 If you make changes to the Gemfile or the Compose file to try out some different configurations, you need to rebuild. Some changes require only `docker-compose up --build`, but a full rebuild requires a re-run of `docker-compose run web bundle `install to sync changes in the Gemfile.lock to the host, followed by `docker-compose up --build`.
+
+
+#### Rspec
+
+`rails g rspec:install`
+
+`rails g rspec:controller applications`
+
+`rails g rspec:model application`
+
+`bundle exec rspec spec/controllers/applications_controller_spec.rb`
+
+`bundle exec rspec spec/models`
+
+`bundle exec rspec spec/controllers`
